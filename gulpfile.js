@@ -1,5 +1,4 @@
 /*
- *
 
  1. Install gulp globally:
 
@@ -7,14 +6,13 @@
 
  2. Install gulp in your project devDependencies:
 
- $ npm install --save-dev gulp
- npm install gulp-sass gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-autoprefixer gulp-cssmin gulp-imagemin imagemin-pngcrush
+npm install --save-dev gulp
+npm install gulp-sass gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-autoprefixer gulp-cssmin gulp-imagemin imagemin-pngcrush
 
  3. Run gulp:
 
  $ gulp
 
- *
  * */
 
 var gulp = require('gulp');
@@ -41,16 +39,16 @@ gulp.task('imgmin', function () {
 
 // компиляция sass, добавление префиксов
 gulp.task('sass', function () {
-    gulp.src('./assets/css/global.scss')
+    gulp.src(['./assets/css/global.scss','./assets/css/desktop.scss','./assets/css/mobile.scss'])
         .pipe(sass())
-        .pipe(prefix('last 2 versions', '> 1%', 'ie 9'))
+        .pipe(prefix('last 2 versions', '> 1%', 'ie 7', 'ie 8', 'ie 9'))
         .pipe(gulp.dest('./dist/css'));
 
 });
 
 // минификация css
 gulp.task('cssmin', function () {
-    gulp.src('./dist/css/global.css')
+    gulp.src(['./dist/css/global.css','./dist/css/desktop.css','./dist/css/mobile.css'])
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist/css'));
