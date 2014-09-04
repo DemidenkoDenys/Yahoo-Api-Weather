@@ -1,41 +1,92 @@
-// Include gulp
+/*
+ *
+
+ 1. Install gulp globally:
+
+ $ npm install --global gulp
+
+ 2. Install gulp in your project devDependencies:
+
+ $ npm install --save-dev gulp
+ npm install gulp-sass gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-autoprefixer gulp-cssmin gulp-imagemin imagemin-pngcrush
+
+ 3. Run gulp:
+
+ $ gulp
+
+ *
+ * */
+
 var gulp = require('gulp');
-
-// Include Our Plugins
+var sass = require('gulp-sass')
 var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var prefix = require('gulp-autoprefixer');
+var cssmin = require('gulp-cssmin');
+var imagemin = require('gulp-imagemin');
+var pngcrush = require('imagemin-pngcrush');
 
-// Lint Task
-gulp.task('lint', function() {
-    return gulp.src('js/*.js')
+// минификация изображений
+gulp.task('imgmin', function () {
+    return gulp.src('./assets/images/**')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngcrush()]
+        }))
+        .pipe(gulp.dest('./dist/images'));
+});
+
+// компиляция sass, добавление префиксов
+gulp.task('sass', function () {
+    gulp.src('./assets/css/global.scss')
+        .pipe(sass())
+        .pipe(prefix('last 2 versions', '> 1%', 'ie 9'))
+        .pipe(gulp.dest('./dist/css'));
+
+});
+
+// минификация css
+gulp.task('cssmin', function () {
+    gulp.src('./dist/css/global.css')
+        .pipe(cssmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('./dist/css'));
+
+});
+
+// Линтинг файлов
+gulp.task('lint', function () {
+    gulp.src('./assets/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
-// Compile Our Sass
-gulp.task('sass', function() {
-    return gulp.src('scss/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('css'));
-});
-
-// Concatenate & Minify JS
-gulp.task('scripts', function() {
-    return gulp.src('js/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('prod'))
-        .pipe(rename('all.min.js'))
+// Конкатенация и минификация файлов
+gulp.task('minify', function () {
+    gulp.src(['assets/js/*.js','assets/js/libs/*.js'])
+        .pipe(concat('global.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('prod'));
+        .pipe(gulp.dest('./assets/js/build'));
+});
+gulp.task('concat-plugins', function () {
+    gulp.src('./assets/js/libs-min/*.js')
+        .pipe(concat('aplugins.js'))
+        .pipe(gulp.dest('./assets/js/build'))
+});
+gulp.task('concat-all', function () {
+    gulp.src('./assets/js/build/**')
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('./dist/js'))
 });
 
-// Watch Files For Changes
-gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['lint', 'scripts']);
-    gulp.watch('scss/*.scss', ['sass']);
+// Задачи, которые будут выполнятся при изменении файлов
+gulp.task('watch', function () {
+    gulp.watch('./assets/js/*.js', ['lint', 'minify','concat-plugins','concat-all']);
+    gulp.watch('./assets/css/**', ["sass"]);
 });
 
-// Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+// Задачи, которые будут выполнятся при запуске gulp
+gulp.task('default', ['watch', 'cssmin','imgmin']);
