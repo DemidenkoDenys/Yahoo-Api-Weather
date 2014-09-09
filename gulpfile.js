@@ -2,12 +2,12 @@
 
  1. Install gulp globally:
 
- $ npm install --global gulp
+sudo npm install --global gulp
 
  2. Install gulp in your project devDependencies:
 
-npm install --save-dev gulp
-npm install gulp-sass gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-autoprefixer gulp-cssmin gulp-imagemin imagemin-pngcrush
+sudo npm install --save-dev gulp
+sudo npm install gulp-sass gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-autoprefixer gulp-cssmin gulp-imagemin imagemin-pngcrush
 
  3. Run gulp:
 
@@ -39,7 +39,7 @@ gulp.task('imgmin', function () {
 
 // компиляция sass, добавление префиксов
 gulp.task('sass', function () {
-    gulp.src(['./assets/css/global.scss','./assets/css/desktop.scss','./assets/css/mobile.scss'])
+    gulp.src(['./assets/css/global.scss','./assets/css/pages/*.scss'])
         .pipe(sass())
         .pipe(prefix('last 2 versions', '> 1%', 'ie 7', 'ie 8', 'ie 9'))
         .pipe(gulp.dest('./dist/css'));
@@ -82,9 +82,10 @@ gulp.task('concat-all', function () {
 
 // Задачи, которые будут выполнятся при изменении файлов
 gulp.task('watch', function () {
-    gulp.watch('./assets/js/*.js', ['lint', 'minify','concat-plugins','concat-all']);
-    gulp.watch('./assets/css/**', ["sass"]);
+    gulp.watch('assets/js/*.js', ['lint', 'minify','concat-plugins','concat-all']);
+    gulp.watch('assets/css/**', ["sass"]);
+//    gulp.watch('./assets/css/**', ["sass"]);
 });
 
 // Задачи, которые будут выполнятся при запуске gulp
-gulp.task('default', ['watch', 'cssmin','imgmin']);
+gulp.task('default', ['cssmin','imgmin','watch']);

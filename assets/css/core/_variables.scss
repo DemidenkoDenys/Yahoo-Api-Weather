@@ -1,0 +1,49 @@
+
+////
+$grid-default: 960px;
+$padding-tablet: 22px;
+
+//**
+$grid-columns:         12 !default;
+$grid-padding:         20px !default;
+
+
+//== Media queries breakpoints
+
+$screen-mobile:                  640px !default;
+$screen-mobile-min:              $screen-mobile !default;
+
+$screen-tablet:                  768px !default;
+$screen-tablet-min:              $screen-tablet !default;
+
+$screen-laptop:                  $grid-default !default;
+$screen-laptop-min:              $screen-laptop !default;
+
+$screen-desktop:                  1200px !default;
+$screen-desktop-min:              $screen-desktop !default;
+
+
+$screen-mobile-max:              ($screen-tablet-min - 1) !default;
+$screen-tablet-max:              ($screen-laptop-min - 1) !default;
+$screen-laptop-max:              ($screen-desktop-min - 1) !default;
+
+
+
+//== Container sizes
+//$container-tablet:             ((720px + $grid-padding)) !default;
+$container-tablet:             100% !default;
+//** For `$screen-tablet-min` and up.
+$container-sm:                 $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:            $grid-default !default;
+$container-md:                 $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      ((1170px + $grid-padding)) !default;
+$container-lg:                 $container-large-desktop !default;
+
+//
+$lg-grid : false;
+$offset-class : false;
+$pull_push-class: false;
