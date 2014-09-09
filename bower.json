@@ -1,0 +1,20 @@
+{
+  "name": "bigdrop-kit",
+  "version": "0.0.0",
+  "authors": [
+    "paul <Paul.K@bigdropinc.com>"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
