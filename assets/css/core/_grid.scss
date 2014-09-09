@@ -60,7 +60,12 @@
 
 .row {
   @include make-row();
+//  @media (max-width: $screen-laptop) {
+//    margin-left:  0;
+//    margin-right: 0;
+//  }
 }
+
 
 
 // Columns
