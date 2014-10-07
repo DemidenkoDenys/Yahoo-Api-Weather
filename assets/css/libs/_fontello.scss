@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'fontello';
+    src:         url('#{$path-fonts}/fontello.eot');
+    src:         url('#{$path-fonts}/fontello.eot#iefix') format('embedded-opentype'), url('#{$path-fonts}/fontello.woff') format('woff'), url('#{$path-fonts}/fontello.ttf') format('truetype'), url('#{$path-fonts}/fontello.svg#fontello') format('svg');
+    font-weight: normal;
+    font-style:  normal;
+}
+
+.fo {
+    @extend .inline;
+    font-family:     "fontello";
+    font-style:      normal;
+    font-weight:     normal;
+    speak:           none;
+    text-decoration: none;
+    text-align:      center;
+    font-variant:    normal;
+    text-transform:  none;
+}
+
+.fo-1x {
+    width:       1em;
+    font-size:   1em;
+    line-height: 1em;
+}
+
+.fo-lg {
+    width:       1.5em;
+    font-size:   1.7em;
+    line-height: 1.5em;
+}

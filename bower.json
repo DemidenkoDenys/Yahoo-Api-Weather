@@ -1,20 +1,23 @@
 {
-  "name": "bigdrop-kit",
-  "version": "0.0.0",
-  "authors": [
-    "paul <Paul.K@bigdropinc.com>"
-  ],
-  "license": "MIT",
-  "homepage": "index.html",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "~2.1.1"
-  }
+    "name": "bigdrop-kit",
+    "version": "0.0.0",
+    "authors": [
+        "paul <Paul.K@bigdropinc.com>"
+    ],
+    "license": "MIT",
+    "homepage": "index.html",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "~2.1.1",
+        "fitvids": "https://github.com/davatron5000/FitVids.js.git",
+        "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git",
+        "bx-slider": "https://github.com/stevenwanderski/bxslider-4.git"
+    }
 }

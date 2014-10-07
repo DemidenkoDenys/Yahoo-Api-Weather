@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'HelveticaNeue35Thin';
-    src: url('helveticaneue-thin.eot');
-    src: url('helveticaneue-thin.eot') format('embedded-opentype'),
-         url('helveticaneue-thin.woff2') format('woff2'),
-         url('helveticaneue-thin.woff') format('woff'),
-         url('helveticaneue-thin.ttf') format('truetype'),
-         url('helveticaneue-thin.svg#HelveticaNeue35Thin') format('svg');
-}

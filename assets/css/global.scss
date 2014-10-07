@@ -1,8 +1,52 @@
-//@import "sections/";
+@import "libs/variables";
+@import "libs/mixins";
+@import "libs/extends";
+@import '_core/core';
+
+
+.all-0 { display: none; }
+
+.tab-0 { display: block; }
+
+.lap-0 { display: block; }
+
+.desk-0 { display: block; }
+
+@media (max-width: $screen-mobile-min - 1) {
+    .mob-0 { display: none; }
+}
+
+@media (min-width: $screen-mobile-min) {
+    .tab-0 { display: none; }
+}
+
+@media (min-width: $screen-tablet-min) {
+    .lap-0 { display: none; }
+}
+
+@media (min-width: $screen-laptop-min) {
+    .desk-0 { display: none; }
+    .desk-25 { float: left; width: 20%; }
+}
+
+@media (min-width: $screen-desktop-min) {
+}
+
+* {
+    outline: 0;
+}
+
+.loading {
+    display:    none;
+    text-align: center;
+    img { display: inline-block; }
+}
+
+.ajax-content {
+    overflow: hidden;
+}
+
+@import "libs/fontello";
 @import "sections/header";
 @import "sections/footer";
-
-
-
-
-
+@import "libs/jquery.m111";
