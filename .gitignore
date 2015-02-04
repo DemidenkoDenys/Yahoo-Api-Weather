@@ -1,7 +1,5 @@
-.idea
-.idea/*
+
 .log
-.log/*
-.DS_Store
+.idea
+bower
 node_modules
-node_modules/*

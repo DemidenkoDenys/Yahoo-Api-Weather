@@ -1,15 +1,21 @@
-var SITE = $.extend( {
-    home: {
-        init: function () {
-            console.log( SITE.global.temp );
-        },
-        resize: function () {
-        },
-        scroll: function () {
-        }
-    }
-}, SITE );
+(function ($, window, document) {
+  'use strict';
 
-$( document ).ready( SITE.home.init );
-//$( window ).resize( SITE.home.resize );
-//$( window ).scroll( SITE.home.scroll );
+  var page = {
+    init: function () {
+    },
+    load: function () {
+    },
+    resize: function () {
+    },
+    scroll: function () {
+    }
+  };
+
+  $(document).ready(page.init);
+  $(window).on({
+    'load': page.load,
+    'resize': page.resize,
+    'scroll': page.scroll
+  });
+})(jQuery, window, document);
