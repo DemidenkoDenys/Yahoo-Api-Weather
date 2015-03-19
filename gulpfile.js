@@ -16,7 +16,6 @@
  4. Run gulp
  gulp
  */
-
 var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
