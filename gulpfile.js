@@ -1,28 +1,19 @@
 /*
- 1. Проверяем версию node.js (должна быть 0.10.25) и npm (должна быть 2.3.0)
+ 1. Check the version node.js ( 0.10.25) and npm ( 2.3.0)
+
  node -v
  npm -v
- Если версия не совпадает, обновляем таким образом:
+
+ If the version does not match, update
+
  sudo npm cache clean -f
  sudo npm install -g n
  sudo n stable
 
- 2. Устанавливаем нужные модули
+ 2. install modules
  sudo npm install
- gulp-rename
- gulp-concat
- gulp-uglify
- gulp-jscs
- gulp-jshint
- gulp-imagemin
- imagemin-pngcrush
- gulp-sass
- gulp-autoprefixer
- gulp-combine-media-queries
- gulp-cssmin gulp-csscomb
- gulp-rigger
 
- 4. Запускаем gulp
+ 4. Run gulp
  gulp
  */
 
@@ -50,6 +41,8 @@ var pages_ = require('./pages.json');
 var pages = pages_.map(function (a) {
     return '_' + a + '.html';
 });
+var pagesAdd = pages;
+pagesAdd.push('templates/*.html');
 
 gulp.task('htmlimport', function () {
     gulp.src(pages)
@@ -92,8 +85,8 @@ gulp.task('scss', function () {
             log: true
         }))
         .pipe(gulp.dest('dist/css'))
-        .pipe(cssMin())
         .pipe(csscomb())
+        .pipe(cssMin())
         .pipe(rename({
             suffix: '.min'
         }))
@@ -152,7 +145,7 @@ gulp.task('js', ['jscs', 'lint'], function () {
 
 gulp.task('watch', function () {
     gulp.watch('assets/js/**/*.js', ['js']);
-    gulp.watch(pages, ['htmlimport']);
+    gulp.watch(pagesAdd, ['htmlimport']);
     gulp.watch('assets/css/**/*.scss', ['scss']);
 });
 
