@@ -1,4 +1,5 @@
 /*
+
  1. Check the version node.js ( 0.10.25) and npm ( 2.3.0)
 
  node -v
