@@ -37,6 +37,10 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var pages_ = require('./pages.json');
 
+// live reload
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+
 
 //HTML include
 
@@ -84,7 +88,9 @@ gulp.task('fonts', function () {
 gulp.task('scss', function () {
   gulp.src(['assets/css/global.scss', 'assets/css/pages/*.scss'])
     .pipe(sourcemaps.init())
-    .pipe(sass())
+    .pipe(sass().on('error', function(err) {
+      console.log(err);
+    }))
     .pipe(prefix('last 2 versions', '> 1%', 'ie 9'))
     .pipe(cmq({
       log: true
@@ -129,6 +135,7 @@ gulp.task('jscs', function () {
 gulp.task('lint', function () {
   mapJs(function (file) {
     gulp.src(['assets/js/' + file + '.js'])
+      .pipe(reload({stream: true, once: true}))
       .pipe(jshint('.jshintrc'))
       .pipe(jshint.reporter('jshint-stylish'));
   });
@@ -150,9 +157,15 @@ gulp.task('js', ['jscs', 'lint'], function () {
 // WATCH
 
 gulp.task('watch', function () {
-  gulp.watch('assets/js/**/*.js', ['js']);
-  gulp.watch(pagesAdd, ['htmlimport']);
-  gulp.watch('assets/css/**/*.scss', ['scss']);
+  
+  browserSync.init({
+    logPrefix : 'Live reload: ',
+    server : './'
+  });
+  
+  gulp.watch('assets/js/**/*.js', ['js', reload]);
+  gulp.watch(pagesAdd, ['htmlimport', reload]);
+  gulp.watch('assets/css/**/*.scss', ['scss', reload]);
 });
 
 // DEFAULT
