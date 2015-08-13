@@ -1,14 +1,11 @@
 {
-  "name": "bigdrop-zb5",
-  "version": "0.0.1",
-  "ignore": [
-  ],
-  "dependencies": {
-  },
+  "name": "bigdrop-kit",
+  "version": "0.0.0",
+  "ignore": [],
+  "dependencies": {},
   "devDependencies": {
-    "foundation": "~5.5.1",
+    "foundation": "~5.5.2",
     "fancy-box": "https://github.com/fancyapps/fancyBox.git",
-    "owl-carousel2": "https://github.com/smashingboxes/OwlCarousel2.git",
-    "bx-slider": "https://github.com/stevenwanderski/bxslider-4.git"
+    "slick-carousel": "https://github.com/kenwheeler/slick.git"
   }
 }

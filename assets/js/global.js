@@ -1,21 +1,28 @@
 (function ($, window, document) {
-  'use strict';
+    "use strict";
 
-  var page = {
-    init: function () {
-    },
-    load: function () {
-    },
-    resize: function () {
-    },
-    scroll: function () {
-    }
-  };
+    var GLOBAL = {
+        init: function () {
+            console.log('global');
+        },
+        load: function () {
 
-  $(document).ready(page.init);
-  $(window).on({
-    'load': page.load,
-    'resize': page.resize,
-    'scroll': page.scroll
-  });
+        },
+        resize: function () {
+
+        },
+        scroll: function () {
+
+        }
+    };
+
+    // Set global function
+    window.MYAPP.init = GLOBAL.init;
+
+    $(document).ready(GLOBAL.init);
+    $(window).on({
+        'load': GLOBAL.load,
+        'resize': GLOBAL.resize,
+        'scroll': GLOBAL.scroll
+    });
 })(jQuery, window, document);
