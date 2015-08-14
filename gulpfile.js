@@ -36,7 +36,6 @@ var options = {
 }
 
 // Modules
-var js_option, default_optionvar;
 var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
