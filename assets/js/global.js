@@ -1,3 +1,4 @@
+window.MYAPP = {};
 (function ($, window, document) {
     "use strict";
 

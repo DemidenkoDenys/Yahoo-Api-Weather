@@ -24,14 +24,15 @@ var options = {
     imgmin: true,
     svgo: true,
     fonts: true,
-    reload: false,
+    reload: true,
     svghtmlmin: false,
     bump: false,
     gzip: false,
     js: true,
     jsimport: false,
     jshint: false,
-    jscs: false
+    jscs: false,
+    webp: false
 }
 
 // Modules
@@ -58,6 +59,7 @@ var bump = require('gulp-bump');
 var gzip = require('gulp-gzip');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
+var webp = require('gulp-webp');
 
 function add_options(param, array) {
     array = array || [];
@@ -111,7 +113,13 @@ gulp.task('htmlimport', function () {
 
 // Images, SVG, Fonts
 gulp.task('imgmin', function () {
-    var stream = gulp.src(['assets/images/**/*.jpg', 'assets/images/**/*.jpeg', 'assets/images/**/*.png', 'assets/images/**/*.gif']);
+    var formats = ['assets/images/**/*.jpg', 'assets/images/**/*.jpeg', 'assets/images/**/*.png', 'assets/images/**/*.gif'];
+    if (options.webp) {
+        gulp.src(formats)
+            .pipe(webp())
+            .pipe(gulp.dest('dist/images'));
+    }
+    var stream = gulp.src(formats);
     if (options.imgmin) {
         stream.pipe(imagemin({
             progressive: true,
