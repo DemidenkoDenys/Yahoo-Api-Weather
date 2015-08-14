@@ -251,7 +251,7 @@ gulp.task('watch', function () {
         });
     }
     gulp.watch('assets/js/**/*.js', [add_options(['js', 'jsimport']), reload]);
-    gulp.watch('[_]*.html', ['htmlimport', reload]);
+    gulp.watch(['[_]*.html', 'templates/**'], ['htmlimport', reload]);
     gulp.watch('assets/css/**/*.scss', ['scss', reload]);
 });
 
