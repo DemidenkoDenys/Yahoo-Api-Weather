@@ -1,3 +1,1 @@
-console.dir(this);
-
-
+console.log('remove me');

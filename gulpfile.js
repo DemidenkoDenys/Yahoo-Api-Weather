@@ -97,7 +97,6 @@ if (options.reload) {
     reload = browserSync.reload;
 }
 
-
 //HTML include
 gulp.task('htmlimport', function () {
     gulp.src('[_]*.html')
@@ -113,7 +112,7 @@ gulp.task('htmlimport', function () {
 
 // Images, SVG, Fonts
 gulp.task('imgmin', function () {
-    var formats = ['assets/images/**/*.jpg', 'assets/images/**/*.jpeg', 'assets/images/**/*.png', 'assets/images/**/*.gif'];
+    var formats = 'assets/images/**/*.+(jpeg|jpg|png|gif)';
     if (options.webp) {
         gulp.src(formats)
             .pipe(webp())
