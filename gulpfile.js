@@ -1,25 +1,4 @@
-    
-/** !!!!!!Временно не выполнять!!!!!!!!
- *
- *  1. Check the version node.js ( 0.10.25) and npm ( 2.3.0)
- *
- *  node -v
- *  npm -v
- *
- *  If the version does not match, update
- *  
- *  !!!!!!Временно не выполнять!!!!!!!!
- *  sudo npm cache clean -f
- *  sudo npm install -g n
- *  sudo n stable
- *
- *  2. install modules
- *  sudo npm install
- *
- *  4. Run gulp
- *  gulp
- *
- */
+
  
 
 // Global options
