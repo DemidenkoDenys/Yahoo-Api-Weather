@@ -211,7 +211,7 @@ gulp.task('jsimport', function () {
     gulp.src(files.js)
         .pipe(rigger())
         .pipe(gulp.dest('dist/js/'))
-        .pipe(uglify())
+        .pipe(errorLog(uglify()))
         .pipe(rename({
             suffix: '.min'
         }))
