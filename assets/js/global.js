@@ -5,6 +5,7 @@ window.MYAPP = {};
     var GLOBAL = {
         init: function () {
             console.log('global');
+            GLOBAL.example_wp_ajax();
         },
         load: function () {
 
@@ -14,6 +15,23 @@ window.MYAPP = {};
         },
         scroll: function () {
 
+        },
+        example_wp_ajax: function () {
+            console.log(vars);
+            $.ajax({
+                type: 'POST',
+                url: vars.ajaxUrl,
+                data: {
+                    action: 'add_content'
+                },
+                dataType: 'html',
+                success: function (response) {
+                    $('#example_wp_ajax').html(response);
+                },
+                error: function (response) {
+                    console.error(response.responseText);
+                }
+            });
         }
     };
 

@@ -1,18 +1,15 @@
-
- 
-
 // Global options
 var options = {
     imgmin: true,
-    svgo: true,
+    svgmin: true,
     fonts: true,
-    reload: true,
+    reload: false,
     svghtmlmin: false,
     bump: false,
     gzip: false,
     js: true,
     jsimport: false,
-    jshint: false,
+    jshint: true,
     jscs: false,
     webp: false
 }
@@ -22,6 +19,7 @@ var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
 var rename = require('gulp-rename');
+var ignore = require('gulp-ignore');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
@@ -34,10 +32,9 @@ var toJson = require('gulp-to-json');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
 var pngcrush = require('imagemin-pngcrush');
-var svgo = require('gulp-svgo');
+var svgmin = require('gulp-svgmin');
 var imagemin = require('gulp-imagemin');
 var bump = require('gulp-bump');
-var gzip = require('gulp-gzip');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var webp = require('gulp-webp');
@@ -50,6 +47,13 @@ function add_options(param, array) {
         }
     });
     return array;
+}
+
+function errorLog(func) {
+    func.on('error', function (error) {
+        console.log(error);
+    });
+    return func;
 }
 
 // Services
@@ -72,7 +76,11 @@ gulp.task('tojson', function () {
 var browserSync;
 var reload = function () {
 };
-
+var files = {
+    js: 'assets/js/*.js',
+    css: ['assets/css/global.scss', 'assets/css/pages/*.scss'],
+    html: '[_]*.html'
+}
 if (options.reload) {
     browserSync = require('browser-sync').create();
     reload = browserSync.reload;
@@ -80,7 +88,7 @@ if (options.reload) {
 
 //HTML include
 gulp.task('htmlimport', function () {
-    gulp.src('[_]*.html')
+    gulp.src(files.html)
         .pipe(rigger())
         .pipe(rename(function (path) {
             var newName = path.basename;
@@ -112,7 +120,7 @@ gulp.task('imgmin', function () {
 
 gulp.task('svgmin', function () {
     gulp.src('assets/images/**/*.svg')
-        .pipe(svgo())
+        .pipe(svgmin())
         .pipe(gulp.dest('dist/images/'));
 });
 
@@ -129,11 +137,9 @@ gulp.task('fonts', function () {
 
 // SCSS
 gulp.task('scss', function () {
-    gulp.src(['assets/css/global.scss', 'assets/css/pages/*.scss'])
+    gulp.src(files.css)
         .pipe(sourcemaps.init())
-        .pipe(sass().on('error', function (err) {
-            console.log(err);
-        }))
+        .pipe(errorLog(sass()))
         .pipe(prefix('last 2 versions', '> 1%', 'ie 10'))
         .pipe(cmq({
             log: false
@@ -167,10 +173,11 @@ function mapJs(callback) {
         });
 }
 
+
 gulp.task('jscs', function () {
     mapJs(function (file) {
         gulp.src(['assets/js/' + file + '.js'])
-            .pipe(jscs());
+            .pipe(errorLog(jscs()));
     });
 });
 
@@ -181,7 +188,7 @@ gulp.task('jshint', function () {
             str.pipe(reload({stream: true, once: true}));
         }
         str
-            .pipe(jshint('.jshintrc'))
+            .pipe(errorLog(jshint('.jshintrc')))
             .pipe(jshint.reporter('jshint-stylish'));
     });
 });
@@ -189,9 +196,9 @@ gulp.task('jshint', function () {
 gulp.task('js', add_options(['jscs', 'jshint']), function () {
     mapJs(function (file) {
         gulp.src(['assets/js/' + file + '/**', 'assets/js/' + file + '.js'])
-            .pipe(concat(file + '.js'))
+            .pipe(errorLog(concat(file + '.js')))
             .pipe(gulp.dest('dist/js'))
-            .pipe(uglify())
+            .pipe(errorLog(uglify()))
             .pipe(rename({
                 suffix: '.min'
             }))
@@ -201,7 +208,7 @@ gulp.task('js', add_options(['jscs', 'jshint']), function () {
 
 
 gulp.task('jsimport', function () {
-    gulp.src('assets/js/*.js')
+    gulp.src(files.js)
         .pipe(rigger())
         .pipe(gulp.dest('dist/js/'))
         .pipe(uglify())
@@ -211,32 +218,53 @@ gulp.task('jsimport', function () {
         .pipe(gulp.dest('dist/js/'));
 });
 
-// GZIP JS & CSS
-gulp.task('gzip', function () {
-    gulp.src('./dist/js/*.min.js')
-        .pipe(gzip())
-        .pipe(gulp.dest('./dist/js/'));
-    gulp.src('./dist/css/*.min.css')
-        .pipe(gzip())
-        .pipe(gulp.dest('./dist/css/'));
-});
-
 // WATCH
 gulp.task('watch', function () {
-
+    var watcherJS;
     if (options.reload) {
         browserSync.init({
             logPrefix: 'Live reload: ',
             server: './'
         });
     }
-    gulp.watch('assets/js/**/*.js', [add_options(['js', 'jsimport']), reload]);
-    gulp.watch(['[_]*.html', 'templates/**'], ['htmlimport', reload]);
-    gulp.watch('assets/css/**/*.scss', ['scss', reload]);
+
+    // JS
+    watcherJS = gulp.watch('assets/js/*.js', [add_options(['js', 'jsimport']), reload]);
+    if (options.jsimport) {
+        watcherJS.on('change', function (event) {
+            files.js = event.path;
+        });
+    }
+
+    // SCSS
+    gulp.watch(['assets/css/global.scss', 'assets/css/pages/*.scss'], ['scss', reload])
+        .on('change', function (event) {
+            files.css = event.path;
+        });
+    gulp.watch(['assets/css/**/*.scss', '!assets/css/global.scss', '!assets/css/pages/*.scss'], ['scss', reload])
+        .on('change', function (event) {
+            files.css = ['assets/css/global.scss', 'assets/css/pages/*.scss'];
+        });
+
+    // HTML
+    gulp.watch('[_]*.html', ['htmlimport', reload])
+        .on('change', function (event) {
+            files.html = event.path;
+        })
+        .on('error', function (err) {
+            console.log(err);
+        });
+    gulp.watch('templates/**', ['htmlimport', reload])
+        .on('change', function () {
+            files.html = '[_]*.html';
+        })
+        .on('error', function (err) {
+            console.log(err);
+        });
 });
 
 // DEFAULT
 default_option = ['tojson', 'scss', 'imgmin', 'watch'];
-add_options(['svgmin', 'js', 'jsimport', 'svghtmlmin', 'fonts', 'bump', 'gzip'], default_option);
+add_options(['svgmin', 'js', 'jsimport', 'svghtmlmin', 'fonts', 'bump'], default_option);
 
 gulp.task('default', default_option);
