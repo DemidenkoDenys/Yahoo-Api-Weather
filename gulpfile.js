@@ -1,3 +1,15 @@
+/*
+    To use gulp-image-resize you need to install GraphicsMagick first
+    1. sudo apt-get install graphicsmagick
+    2. put the images you need to resize into assets/images/to_resize
+    3. run gulp image-resize
+
+*/
+
+// Image sizes(width) for gulp-image-resize
+var sizes = [1920, 1400, 1024, 768];
+
+
 // Global options
 var options = {
     imgmin: true,
@@ -12,7 +24,7 @@ var options = {
     jshint: true,
     jscs: false,
     webp: false
-}
+};
 
 // Modules
 var fs = require('fs');
@@ -38,6 +50,7 @@ var bump = require('gulp-bump');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var webp = require('gulp-webp');
+var imageResize = require('gulp-image-resize');
 
 function add_options(param, array) {
     array = array || [];
@@ -101,7 +114,7 @@ gulp.task('htmlimport', function () {
 
 // Images, SVG, Fonts
 gulp.task('imgmin', function () {
-    var formats = 'assets/images/**/*.+(jpeg|jpg|png|gif)';
+    var formats = ['assets/images/**/*.+(jpeg|jpg|png|gif)', '!assets/images/to_resize/**'];
     if (options.webp) {
         gulp.src(formats)
             .pipe(webp())
@@ -134,6 +147,21 @@ gulp.task('fonts', function () {
     gulp.src('assets/fonts/**')
         .pipe(gulp.dest('dist/fonts'));
 });
+
+
+    // Image resize
+    gulp.task('image-resize', function () {
+        sizes.forEach(function(size){
+            gulp.src('assets/images/to_resize/**/*.+(jpeg|jpg|png|gif)')
+                .pipe(imageResize({
+                    width : size
+                }))
+                .pipe(rename({
+                    suffix: '-'+ size
+                }))
+                .pipe(gulp.dest('dist/images/'));
+        });
+    });
 
 // SCSS
 gulp.task('scss', function () {
