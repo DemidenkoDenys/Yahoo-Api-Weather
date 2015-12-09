@@ -1,3 +1,22 @@
+# BigDrop Framework
+* * *
+
+## Getting Started
+
+1. To download the framework enter the following command in your console :
+ ```
+ git clone git@bitbucket.org:bigdropinc/bigdrop-kit.git
+ ```
+
+2. Install npm modules to your project with:
+  ```
+  sudo npm install
+  ```.
+  This command will install the node modules that listed in  __package.json__.
+3. Run gulp with ` gulp ` command.
+
+
+## Framework structure
 
 ```
 Project root
