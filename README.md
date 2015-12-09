@@ -12,7 +12,7 @@
   ```
   sudo npm install
   ```.
-  This command will install the node modules that listed in  __package.json__ into your project.
+  This command will install the node modules, that listed in  __package.json__,into your project .
 3. Run gulp with ` gulp ` command.
 
 
