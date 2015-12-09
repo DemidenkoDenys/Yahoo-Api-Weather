@@ -1,3 +1,5 @@
+![logo](http://bigdropinc.com/wp-content/themes/bd/images/bigdrop.svg)
+
 # BigDrop Framework
 * * *
 
