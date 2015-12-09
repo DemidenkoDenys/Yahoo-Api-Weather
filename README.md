@@ -8,7 +8,7 @@
  git clone git@bitbucket.org:bigdropinc/bigdrop-kit.git
  ```
 
-2. Install npm modules to your project with:
+2. Install the npm modules to your project with:
   ```
   sudo npm install
   ```.
