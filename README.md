@@ -3,8 +3,8 @@
 Project root
 │
 ├─── README.md
-├─── index.html   (menu)
-├─── htaccess
+├─── index.html 
+├─── .htaccess
 │
 └───assets
     │
@@ -21,16 +21,13 @@ Project root
     ├─── fonts
     │
     ├─── js
-    │   ├─── modules
-    │   │   └─── (functions separated on different modules(files))
-    │   ├─── services
-    │   │   └─── (files with service and helping functions)
-    │   ├─── bundles
-    │   │   └─── (files with dependencies from node modules )
+    │   ├─── modules 
+    │   ├─── services 
+    │   ├─── bundles 
     │   └─── global.js
     │
     ├─── images
-    │   └─── temp (temporary images)
+    │   └─── temp 
     │
     └─── html
     │   ├─── (non compiled html files)
