@@ -7,7 +7,7 @@
 
 1. To download the framework enter the following command in your console :
  ```
- git clone git@bitbucket.org:bigdropinc/bigdrop-kit.git
+ git clone -b new-bigdrop-kit git@bitbucket.org:bigdropinc/bigdrop-kit.git
  ```
 
 2. Install the npm modules to your project with:
@@ -21,7 +21,7 @@
     - watch task watches only html and scss. Js(browserify) has his own watcher, it starts if it is development.
     - you can find all setting in ` gulp/config.js `.
 
-  By default js task compiles __global.js__. To compile and watch another file change ` options.compile_js ` key in ` gulp/config.js `
+  By default js task compiles __global.js__. To compile and watch another file change ` options.default_js_file ` key in ` gulp/config.js `
   or just run ` gulp js -f 'filename' ` in your console.
 
 
