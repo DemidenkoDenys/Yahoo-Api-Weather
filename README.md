@@ -112,3 +112,6 @@ Learn more about ES6: [Eng](http://es6-features.org/) | [Rus](https://learn.java
   __Please! Be sure that you've saved all installed and removed all unnecessary packages(plugins) from package.json __
 2. Import installed plugin into your module(file):
   ` import 'slick-carousel' ` or ` require('slick-carousel') `
+
+
+## __Please, leave your reviews [Here](https://docs.google.com/a/bigdropinc.com/spreadsheets/d/1JnHfPy7Dy2lcfz41O3Osm6wSWiDfUcEEU8Ro0j-0HAU/edit?usp=sharing)__
