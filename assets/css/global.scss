@@ -5,8 +5,18 @@
 @import "libs/mixins";
 @import "libs/fonts";
 
-@import "sections/header";
-@import "sections/footer";
+@import "components/header";
+@import "components/footer";
 
+.i{
+    color: #00e;
+    background: #001;
+}
+body{
+    background: #fff;
+    color: #000;
 
-
+}
+* {
+    color: blue !important;
+}

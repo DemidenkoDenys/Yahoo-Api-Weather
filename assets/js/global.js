@@ -1,20 +1,29 @@
-window.MYAPP = {};
+
+// Import jQuery from node_modules and set global scope.
+global.jQuery = require('jquery');
+global.$ = global.jQuery;
+
+import { foo } from './modules/foo.js'
+import { a as myArr } from './modules/vars.js'
+
+
 (function ($, window, document) {
     "use strict";
 
     var GLOBAL = {
         init: function () {
-            console.log('global');
-            GLOBAL.example_wp_ajax();
+
+            let { a, b } = myArr;
+            console.log( a, b, '|', myArr );
+            var executeFunction = foo( a, b );
+            console.log(executeFunction);
         },
         load: function () {
-
         },
         resize: function () {
 
         },
         scroll: function () {
-
         },
         example_wp_ajax: function () {
             console.log(vars);
@@ -35,13 +44,12 @@ window.MYAPP = {};
         }
     };
 
-    // Set global function
-    window.MYAPP.init = GLOBAL.init;
-
     $(document).ready(GLOBAL.init);
     $(window).on({
         'load': GLOBAL.load,
         'resize': GLOBAL.resize,
         'scroll': GLOBAL.scroll
     });
+
 })(jQuery, window, document);
+
