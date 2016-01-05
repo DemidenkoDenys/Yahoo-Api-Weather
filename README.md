@@ -113,5 +113,9 @@ Learn more about ES6: [Eng](http://es6-features.org/) | [Rus](https://learn.java
 2. Import installed plugin into your module(file):
   ` import 'slick-carousel' ` or ` require('slick-carousel') `
 
+## .htaccess (important!)
+
+If you are using Apache server to set up your local project, you may face '500 Internal server error'.
+To avoid this, comment all the code in __.htaccess__ file, and turn this code back before uploading to the stage server.
 
 ## __Please, leave your reviews [Here](https://docs.google.com/a/bigdropinc.com/spreadsheets/d/1JnHfPy7Dy2lcfz41O3Osm6wSWiDfUcEEU8Ro0j-0HAU/edit?usp=sharing)__
