@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var argv = require('yargs').argv;
 var gutil = require('gulp-util');
-var to5ify = require('6to5ify');
+var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var uglify = require('gulp-uglify');
@@ -35,10 +35,10 @@ function buildScript(file, watch) {
 
     if ( watch ) {
         bundler = watchify(bundler);
-        bundler.on('update', rebundle);
+        //bundler.on('update', rebundle);
     }
 
-    bundler.transform(to5ify);
+    bundler.transform("babelify", {presets: ["es2015", "react"]});
 
     function rebundle() {
         var stream = bundler.bundle().on('error', function (err) {

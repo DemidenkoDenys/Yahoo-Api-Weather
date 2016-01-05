@@ -1,5 +1,5 @@
 export const a = {
     a: 23,
-    b: 4.5,
+    b: 1,
     title: 'Hello'
 };

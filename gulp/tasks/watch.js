@@ -22,5 +22,6 @@ gulp.task('watch', ['tojson'], function() {
 
     gulp.watch(options.styles.watch, ['scss', reload]);
     gulp.watch(options.markup.watch, ['htmlimport' , reload]);
+    gulp.watch(options.scripts.watch, ['js' , reload]);
 
 });

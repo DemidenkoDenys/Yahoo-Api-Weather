@@ -7,7 +7,7 @@
 
 1. To download the framework enter the following command in your console :
  ```
- git clone git@bitbucket.org:bigdropinc/bigdrop-kit.git
+ git clone -b new-bigdrop-kit git@bitbucket.org:bigdropinc/bigdrop-kit.git
  ```
 
 2. Install the npm modules to your project with:
@@ -16,12 +16,12 @@
   ```.
   This command will install the node modules, that listed in  __package.json__, into your project .
 3. Run gulp with ` gulp dev ` or ` gulp prod `  command.
-  - ` gulp dev ` starts scss, js(browserify) , browsersync, html import and watch tasks without minification, with source maps.
-  - ` gulp prod ` starts all tasks without watcher, creates minified files, removes source maps.
-  - watch task watches only html and scss. Js(browserify) has his own watcher, it starts if it is development.
-  - you can find all setting in ` gulp/config.js `.
+    - ` gulp dev ` starts scss, js(browserify) , browsersync, html import and watch tasks without minification, with source maps.
+    - ` gulp prod ` starts all tasks without watcher, creates minified files, removes source maps.
+    - watch task watches only html and scss. Js(browserify) has his own watcher, it starts if it is development.
+    - you can find all setting in ` gulp/config.js `.
 
-  By default js task compiles __global.js__. To compile and watch another file change ` options.compile_js ` key in ` gulp/config.js `
+  By default js task compiles __global.js__. To compile and watch another file change ` options.default_js_file ` key in ` gulp/config.js `
   or just run ` gulp js -f 'filename' ` in your console.
 
 
@@ -112,3 +112,11 @@ Learn more about ES6: [Eng](http://es6-features.org/) | [Rus](https://learn.java
   __Please! Be sure that you've saved all installed and removed all unnecessary packages(plugins) from package.json __
 2. Import installed plugin into your module(file):
   ` import 'slick-carousel' ` or ` require('slick-carousel') `
+
+## .htaccess (important!)
+
+If you are using Apache server to set up your local project, you may face '500 Internal server error'.
+To avoid this, comment all the code in __.htaccess__ file, and turn this code back before uploading to the stage server.
+
+
+## __Please, leave your reviews [Here](https://docs.google.com/a/bigdropinc.com/spreadsheets/d/1JnHfPy7Dy2lcfz41O3Osm6wSWiDfUcEEU8Ro0j-0HAU/edit?usp=sharing)__

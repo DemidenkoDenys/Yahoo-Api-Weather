@@ -8,7 +8,8 @@ var options = {
 
     scripts:{
         src: './assets/js/',
-        dest:'./dist/js'
+        dest:'./dist/js',
+        watch: './assets/js/**/*.js'
     },
 
     styles:{

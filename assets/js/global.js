@@ -1,20 +1,18 @@
 
-// Import jQuery from node_modules and set global scope.
+// JUST EXAMPLE OF USAGE! Import jQuery from node_modules and set global scope.
 global.jQuery = require('jquery');
 global.$ = global.jQuery;
 
 import { foo } from './modules/foo.js'
 import { a as myArr } from './modules/vars.js'
 
-
 (function ($, window, document) {
     "use strict";
 
     var GLOBAL = {
         init: function () {
-
-            let { a, b } = myArr;
-            console.log( a, b, '|', myArr );
+            let [ a, b ] = myArr;
+            console.log( `${a}, ${b} `, myArr);
             var executeFunction = foo( a, b );
             console.log(executeFunction);
         },
