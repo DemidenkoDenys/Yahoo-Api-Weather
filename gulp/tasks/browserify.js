@@ -41,14 +41,16 @@ function buildScript(file, watch) {
     bundler.transform("babelify", {presets: ["es2015", "react"]});
 
     function rebundle() {
-        var stream = bundler.bundle().on('error', function (err) {
-            console.log(err.toString());
-        });
+        var stream = bundler.bundle()
+            .on('error', function (err) {
+                console.log(err.toString());
+                this.emit("end");
+            });
 
         gutil.log('Rebundle...');
 
         return stream
-            .pipe(source(workFile.match(/([A-z0-9]*).js$/g)[0]))
+            .pipe(source(workFile.match(/([A-z0-9-_]*).js$/g)[0]))
             .pipe(gulp.dest(options.scripts.dest));
     }
     if(global.production) {

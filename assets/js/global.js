@@ -1,5 +1,6 @@
 
 // JUST EXAMPLE OF USAGE! Import jQuery from node_modules and set global scope.
+// REMOVE ALL THIS FOR YOUR PROJECT
 global.jQuery = require('jquery');
 global.$ = global.jQuery;
 
