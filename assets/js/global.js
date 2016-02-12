@@ -1,4 +1,7 @@
 
+import "babel-polyfill"; // DO NOT REMOVE THIS!! This polyfill provides correct work in IE while we are using Babel to transform our JS.
+
+
 // JUST EXAMPLE OF USAGE! Import jQuery from node_modules and set global scope.
 // REMOVE ALL THIS FOR YOUR PROJECT
 global.jQuery = require('jquery');
