@@ -1,5 +1,7 @@
-
-import "babel-polyfill"; // DO NOT REMOVE THIS!! This polyfill provides correct work in IE while we are using Babel to transform our JS.
+// DO NOT REMOVE THIS!! This polyfill provides correct work in IE while we are using Babel to transform our JS.
+import "babel-polyfill";
+import {foo} from "./modules/foo";
+import {a as myArr} from "./modules/vars";
 
 
 // JUST EXAMPLE OF USAGE! Import jQuery from node_modules and set global scope.
@@ -7,51 +9,57 @@ import "babel-polyfill"; // DO NOT REMOVE THIS!! This polyfill provides correct 
 global.jQuery = require('jquery');
 global.$ = global.jQuery;
 
-import { foo } from './modules/foo.js'
-import { a as myArr } from './modules/vars.js'
 
-(function ($, window, document) {
-    "use strict";
+console.info(`Environment: ${process.env.NODE_ENV}`, process.env);
 
-    var GLOBAL = {
-        init: function () {
-            let [ a, b ] = myArr;
-            console.log( `${a}, ${b} `, myArr);
-            var executeFunction = foo( a, b );
-            console.log(executeFunction);
-        },
-        load: function () {
-        },
-        resize: function () {
-
-        },
-        scroll: function () {
-        },
-        example_wp_ajax: function () {
-            console.log(vars);
-            $.ajax({
-                type: 'POST',
-                url: vars.ajaxUrl,
-                data: {
-                    action: 'add_content'
-                },
-                dataType: 'html',
-                success: function (response) {
-                    $('#example_wp_ajax').html(response);
-                },
-                error: function (response) {
-                    console.error(response.responseText);
+const GLOBAL = {
+    home_init () {
+        let {a, b} = myArr;
+        console.log(`${a}, ${b} `, myArr);
+        const executeFunction = foo(a, b);
+        console.log(executeFunction);
+        console.log(this);
+        this.example_wp_ajax();
+    },
+    load () {
+    },
+    resize () {
+    },
+    scroll () {
+    },
+    example_wp_ajax () {
+        console.log(vars);
+        $.ajax({
+            type: 'GET',
+            url: vars.ajaxUrl,
+            data: {
+                action: 'add_content'
+            },
+            dataType: 'html',
+            success (response) {
+                $('#example_wp_ajax').html(process.env.NODE_ENV);
+                if (global.vars.example_wp_ajax_callback) {
+                    global.vars.example_wp_ajax_callback(response);
                 }
-            });
-        }
-    };
+            },
+            error: function (response) {
+                console.error(response.responseText);
+            }
+        });
+    }
+};
 
-    $(document).ready(GLOBAL.init);
-    $(window).on({
-        'load': GLOBAL.load,
-        'resize': GLOBAL.resize,
-        'scroll': GLOBAL.scroll
-    });
 
-})(jQuery, window, document);
+let init = null;
 
+switch (global.vars.page) {
+    case 'home_page':
+        init = GLOBAL.home_init.bind(GLOBAL);
+        break;
+    case 'about_page':
+        init = GLOBAL.about_init.bind(GLOBAL);
+    default:
+        init = () => console.error('Init is not a function');
+}
+
+$(document).ready(init);

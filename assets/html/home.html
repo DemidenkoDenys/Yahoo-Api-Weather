@@ -7,7 +7,7 @@
     <title>Bigdrop Kit</title>
     <!-- Example AJAX url for WP-->
     <script>
-        var vars = {"ajaxUrl":"templates/ajax/content.html"};
+        var vars = {"ajaxUrl": "/assets/html/templates/footer.html", page: 'home_page'};
     </script>
 
 
@@ -21,5 +21,11 @@
     //= templates/footer
 
 <script src="../js/global.js"></script>
+<script>
+    // Example AJAX callback for WP developers
+    window.vars.example_wp_ajax_callback = function (response) {
+        console.log(response);
+    };
+</script>
 </body>
 </html>

@@ -15,17 +15,17 @@ var options = require('../config');
 gulp.task('scss', function () {
 
      var scss = gulp.src(options.styles.src)
-        .pipe(gulpif(!global.production, sourcemaps.init()))
+        .pipe(gulpif(process.env.NODE_ENV === 'development', sourcemaps.init()))
         .pipe(sass().on('error', sass.logError))
         .pipe(prefix('last 2 versions', '> 1%', 'ie 10'))
         .pipe(cmq({
              beautify: true
         }))
-        .pipe(gulpif(!global.production,sourcemaps.write()))
+        .pipe(gulpif(process.env.NODE_ENV === 'development',sourcemaps.write()))
         .pipe(gulp.dest(options.styles.dest))
         .pipe(csscomb());
 
-    if(global.production) {
+    if(process.env.NODE_ENV === 'production') {
         scss.pipe(cssMin())
             .pipe(rename({
                 suffix: '.min'

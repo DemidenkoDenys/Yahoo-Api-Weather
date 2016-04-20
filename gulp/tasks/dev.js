@@ -8,8 +8,8 @@ gulp.task('dev', function(cb) {
 
     cb = cb || function() {};
 
-    global.production = false;
-
+    // global.production = false;
+    process.env.NODE_ENV === 'development';
     runSequence(['scss', 'js', 'htmlimport', 'watch'], cb);
 
 

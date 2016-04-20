@@ -8,7 +8,8 @@ gulp.task('prod', function(cb) {
 
     cb = cb || function() {};
 
-    global.production = true;
+    // global.production = true;
+    process.env.NODE_ENV = 'production';
 
     runSequence(['scss', 'js', 'htmlimport', 'fonts',  'images', 'webp', 'tojson'], cb);
 
