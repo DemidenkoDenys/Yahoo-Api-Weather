@@ -1,5 +1,6 @@
 .log
 .idea/
-.directory
-node_modules/
+directory/
 bower_components/
+node_modules/
+README.md

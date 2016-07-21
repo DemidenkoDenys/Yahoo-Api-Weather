@@ -1,19 +1,8 @@
 // DO NOT REMOVE THIS!! This polyfill provides correct work in IE while we are using Babel to transform our JS.
 import "babel-polyfill";
+import GLOBAL from "./modules/global";
 import HOME from "./modules/HOME";
 import ABOUT from "./modules/ABOUT";
-
-// JUST EXAMPLE OF USAGE! Import jQuery from node_modules and set global scope.
-// REMOVE ALL THIS FOR YOUR PROJECT
-global.jQuery = require('jquery');
-global.$ = global.jQuery;
-
-console.info(`Environment: ${process.env.NODE_ENV}`, process.env);
-if (process.env.NODE_ENV === 'development') {
-    console.log('Тут я могу писать шо хочу - в продакшене это удалиться!')
-}
-
-
 /**
  * Создаем функцию init, которая
  * будет вызываться в любом случае
@@ -39,7 +28,7 @@ switch (global.vars.page) {
 /**
  * Вешаем на document.onready нашу инициализацию страницы
  */
-$(document).ready(init);
+$(document).ready(GLOBAL.init(), init);
 
 
 

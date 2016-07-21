@@ -1,6 +1,3 @@
-import {foo} from "../modules/foo";
-import {a as myArr} from "../modules/vars";
-import GLOBAL from "./GLOBAL";
 /**
  * страница Home
  */
@@ -8,13 +5,7 @@ export default {
     /**
      * метод инициализации для страницы
      */
-    init(){
-        /**
-         * инициализируем модальное окно,
-         * которое есть на этой и других страницах
-         */
-        GLOBAL.modal_contact_form();
-        
+    init(){         
         /**
          * инициализируем сладейр для home page
          */
