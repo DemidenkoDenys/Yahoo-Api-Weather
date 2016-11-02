@@ -1,6 +1,8 @@
 .log
 .idea/
+.htaccess
 directory/
+logs/
 bower_components/
 node_modules/
 README.md
