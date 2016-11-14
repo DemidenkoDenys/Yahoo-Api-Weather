@@ -21,7 +21,7 @@ gulp.task('scss', function () {
         .pipe(cmq({
              beautify: true
         }))
-        .pipe(csscomb());
+        .pipe(csscomb())
         .pipe(gulpif(process.env.NODE_ENV === 'development',sourcemaps.write()))
         .pipe(gulp.dest(options.styles.dest))
 
