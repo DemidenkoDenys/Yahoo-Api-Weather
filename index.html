@@ -6,8 +6,6 @@
         <link rel="stylesheet" href="dist/css/global.min.css"/>
     </head>
     <body>
-
-
         <div class="container">
             <style>
                 * {
@@ -96,7 +94,7 @@
                 </div>
             </div>
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
             $(function () {
                 $.ajax('pages.json').done(function (data) {
@@ -106,12 +104,6 @@
                         $('#menu').append(el);
                     })
                 })
-                $.ajax('bower.json').done(function (data) {
-                    console.log(data);
-                    $('#name_project_').text(data.name.replace(/[-]|[_]/g, ' '));
-                    $('#version_project_').find('span').text(data.version);
-                })
-
             })
         </script>
     </body>

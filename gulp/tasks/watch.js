@@ -16,7 +16,8 @@ gulp.task('watch', ['tojson'], function() {
     if (options.liverReload) {
         browserSync.init( {
             logPrefix: 'Live reload: ',
-            server: './'
+            server: './',
+            notify: false
         } );
     }
 

@@ -1,5 +1,3 @@
-// DO NOT REMOVE THIS!! This polyfill provides correct work in IE while we are using Babel to transform our JS.
-import "babel-polyfill";
 import GLOBAL from "./modules/global";
 import HOME from "./modules/HOME";
 import ABOUT from "./modules/ABOUT";

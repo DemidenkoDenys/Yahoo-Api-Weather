@@ -13,7 +13,6 @@ var streamify = require('gulp-streamify');
 var ignore = require('gulp-ignore');
 var options = require('../config');
 
-
 function buildScript(file, watch) {
 
     let workFile;
@@ -43,14 +42,14 @@ function buildScript(file, watch) {
             'presets': ["es2015", "react"],
             'plugins': ["transform-inline-environment-variables"]
         }
+        bundler.transform("babelify", transformOptions);
     } else {
         transformOptions = {
             'presets': ["es2015", "react"],
             'plugins': ["transform-inline-environment-variables", "transform-remove-console", "transform-remove-debugger"]
         }
+        bundler.transform("babelify", transformOptions).add(require.resolve("babel-polyfill"));
     }
-
-    bundler.transform("babelify", transformOptions);
 
     const stream = bundler.bundle()
         .on('error', function (err) {
@@ -78,8 +77,6 @@ function buildScript(file, watch) {
 }
 
 gulp.task('js', function () {
-
     // Only run watchify if NOT production
     return buildScript(options.default_js_file, process.env.NODE_ENV === 'development');
-
 });
