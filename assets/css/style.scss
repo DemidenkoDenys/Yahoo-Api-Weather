@@ -1,3 +1,4 @@
+//@import "foundation/settings/settings";
 //@import "foundation/foundation";
 
 @import "libs/variables";
@@ -7,6 +8,6 @@
 @import "components/header";
 @import "components/footer";
 
-@import "pages/style";
+@import "pages/global";
 @import "pages/home";
 
