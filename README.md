@@ -18,7 +18,7 @@
 3. Run gulp with ` gulp dev ` or ` gulp prod `  command.
     - ` gulp dev ` starts scss, js(browserify) , browsersync, html import and watch tasks without minification, with source maps.
     - ` gulp prod ` starts all tasks without watcher, creates minified files, removes source maps.
-    - set ` jadeSwitcher: true ` in ` gulp/config.js ` to enable jade instead of html.
+    - set ` jadeEnable: true ` in ` gulp/config.js ` to enable jade instead of html.
     - watch task watches only html and scss. Js(browserify) has his own watcher, it starts if it is development.
     - you can find all setting in ` gulp/config.js `.
 

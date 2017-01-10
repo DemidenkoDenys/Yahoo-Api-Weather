@@ -5,7 +5,7 @@ var toJson = require('gulp-to-json');
 var options = require('../config');
 
 gulp.task('tojson', function () {
-    gulp.src(options.jadeSwitcher ? options.jade.compiled : options.markup.compiled)
+    gulp.src(options.jadeEnable ? options.jade.compiled : options.markup.compiled)
         .pipe(toJson({
             relative: true,
             filename: options.pages_list,

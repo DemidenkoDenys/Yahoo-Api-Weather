@@ -24,7 +24,7 @@ gulp.task('watch', ['tojson'], function() {
     }
 
     gulp.watch(options.styles.watch, ['scss', reload]);
-    gulp.watch(options.jadeSwitcher ? options.jade.watch : options.markup.watch, [options.jadeSwitcher ? 'jade' : 'htmlimport', reload]);
+    gulp.watch(options.jadeEnable ? options.jade.watch : options.markup.watch, [options.jadeEnable ? 'jade' : 'htmlimport', reload]);
     gulp.watch(options.scripts.watch, ['js' , reload]);
 
 });

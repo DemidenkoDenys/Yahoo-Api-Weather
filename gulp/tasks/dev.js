@@ -9,7 +9,7 @@ gulp.task('dev', function(cb) {
     cb = cb || function() {};
 
     process.env.NODE_ENV === 'development';
-    runSequence(['scss', 'js', options.jadeSwitcher ? 'jade' : 'htmlimport', 'watch'], cb);
+    runSequence(['scss', 'js', options.jadeEnable ? 'jade' : 'htmlimport', 'watch'], cb);
 
 
 });
