@@ -5,6 +5,7 @@ var options = {
     default_js_file:'global.js', // root folder - assets/js/
 
     liverReload: true,
+    jadeSwitcher: false,
 
     scripts:{
         src: './assets/js/',
@@ -30,6 +31,13 @@ var options = {
         dest:'./dist/html/',
         compiled: './dist/html/*.html',
         watch:'./assets/html/**/*.html'
+    },
+
+    jade: {
+        src: './assets/jade/*.jade',
+        dest: './dist/html/',
+        compiled: './dist/html/*.html',
+        watch:'./assets/jade/**/*.jade'
     },
 
     fonts:{

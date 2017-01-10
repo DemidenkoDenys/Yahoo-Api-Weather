@@ -11,6 +11,6 @@ gulp.task('prod', function(cb) {
     // global.production = true;
     process.env.NODE_ENV = 'production';
 
-    runSequence(['scss', 'js', 'htmlimport', 'fonts',  'images', 'webp', 'tojson'], cb);
+    runSequence(['scss', 'js', options.jadeSwitcher ? 'jade' : 'htmlimport', 'fonts',  'images', 'webp', 'tojson'], cb);
 
 });

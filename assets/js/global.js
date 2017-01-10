@@ -26,4 +26,4 @@ switch (global.vars.page) {
 /**
  * Вешаем на document.onready нашу инициализацию страницы
  */
-$(document).ready(GLOBAL.init(), init);
+$(document).ready(GLOBAL.init(), init());

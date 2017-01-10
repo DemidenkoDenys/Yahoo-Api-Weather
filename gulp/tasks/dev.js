@@ -2,13 +2,14 @@
 
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
+var options = require('../config');
 
 gulp.task('dev', function(cb) {
 
     cb = cb || function() {};
 
     process.env.NODE_ENV === 'development';
-    runSequence(['scss', 'js', 'htmlimport', 'watch'], cb);
+    runSequence(['scss', 'js', options.jadeSwitcher ? 'jade' : 'htmlimport', 'watch'], cb);
 
 
 });
