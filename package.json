@@ -14,6 +14,7 @@
     "babel-polyfill": "latest",
     "babel-preset-es2015": "latest",
     "babel-preset-react": "latest",
+    "babel-preset-stage-0": "latest",
     "babelify": "latest",
     "browser-sync": "latest",
     "browserify": "latest",

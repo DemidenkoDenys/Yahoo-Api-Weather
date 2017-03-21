@@ -39,13 +39,13 @@ function buildScript(file, watch) {
 
     if (process.env.NODE_ENV === 'development') {
         transformOptions = {
-            'presets': ["es2015", "react"],
+            'presets': ["es2015", "react", 'stage-0'],
             'plugins': ["transform-inline-environment-variables"]
         };
         bundler.transform("babelify", transformOptions);
     } else {
         transformOptions = {
-            'presets': ["es2015", "react"],
+            'presets': ["es2015", "react", 'stage-0'],
             'plugins': ["transform-inline-environment-variables", "transform-remove-console", "transform-remove-debugger"]
         };
         bundler.transform("babelify", transformOptions).add(require.resolve("babel-polyfill"));
