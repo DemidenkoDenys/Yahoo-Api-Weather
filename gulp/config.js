@@ -5,7 +5,7 @@ var options = {
     default_js_file:'global.js', // root folder - assets/js/
 
     liverReload: true,
-    jadeEnable: true,
+    jadeEnable: false,
 
     scripts:{
         src: './assets/js/',

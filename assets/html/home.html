@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="../css/style.css"/>
-    <title>Bigdrop Kit</title>
-    <!-- Example AJAX url for WP-->
-    <script>
-        var vars = {
-            "ajaxUrl": "/assets/html/templates/footer.html",
-            page: 'home_page'
-        };
-    </script>
-</head>
-<body>
-    //= templates/header
-    //= templates/svg/kiwi
-    <div id="example_wp_ajax">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At dolor dolore odio quo ut! Beatae blanditiis consequatur cumque debitis deserunt dicta, dolorum ducimus impedit iusto nam necessitatibus placeat totam voluptate!</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias, aperiam asperiores, dicta error est expedita, facilis fugit illum impedit libero mollitia necessitatibus possimus praesentium quibusdam quod rem! Aperiam, dignissimos.</div>
-    </div>
-    //= templates/footer
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="../js/global.js"></script>
-<script>
-    // Example AJAX callback for WP developers
-    window.vars.example_wp_ajax_callback = function (response) {
-        console.log(response);
-    };
-</script>
-</body>
+<html lang="en">
+	<head>
+		//= templates/head
+	</head>
+	<body>
+		<header id="header">
+			//= templates/header
+		</header>
+		<div id="main">
+			<h1>h1 heading</h1>
+			<h1>h2 heading</h1>
+			<h1>h3 heading</h1>
+			<h1>h4 heading</h1>
+			<h1>h5 heading</h1>
+			<h1>h6 heading</h1>
+			<p>Paragraph <a href="#">link</a> <strong>strong</strong> <em>em</em> sit amet, consectetur adipisicing elit. Officiis animi nobis consequuntur deleniti tempora blanditiis doloremque, asperiores molestiae dicta vero aliquid sunt necessitatibus dolores sequi, delectus qui nihil libero similique debitis atque consectetur? Libero qui est perferendis deserunt voluptates adipisci temporibus asperiores sapiente vel ad minus ab cumque molestiae, assumenda ipsam hic autem quasi totam accusamus. Doloremque unde odio, voluptatem quo illo corporis cupiditate quas blanditiis tempore animi voluptates ad quisquam facere illum quaerat totam, debitis recusandae excepturi! Quod nemo, illum iusto, quisquam quas ex, sapiente molestiae distinctio impedit possimus nesciunt. Suscipit distinctio obcaecati veritatis modi, illum aliquam amet laudantium.</p>
+			<p>Paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis animi nobis consequuntur deleniti tempora blanditiis doloremque, asperiores molestiae dicta vero aliquid sunt necessitatibus dolores sequi, delectus qui nihil libero similique debitis atque consectetur? Libero qui est perferendis deserunt voluptates adipisci temporibus asperiores sapiente vel ad minus ab cumque molestiae, assumenda ipsam hic autem quasi totam accusamus. Doloremque unde odio, voluptatem quo illo corporis cupiditate quas blanditiis tempore animi voluptates ad quisquam facere illum quaerat totam, debitis recusandae excepturi! Quod nemo, illum iusto, quisquam quas ex, sapiente molestiae distinctio impedit possimus nesciunt. Suscipit distinctio obcaecati veritatis modi, illum aliquam amet laudantium.</p>
+			<p>Paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis animi nobis consequuntur deleniti tempora blanditiis doloremque, asperiores molestiae dicta vero aliquid sunt necessitatibus dolores sequi, delectus qui nihil libero similique debitis atque consectetur? Libero qui est perferendis deserunt voluptates adipisci temporibus asperiores sapiente vel ad minus ab cumque molestiae, assumenda ipsam hic autem quasi totam accusamus. Doloremque unde odio, voluptatem quo illo corporis cupiditate quas blanditiis tempore animi voluptates ad quisquam facere illum quaerat totam, debitis recusandae excepturi! Quod nemo, illum iusto, quisquam quas ex, sapiente molestiae distinctio impedit possimus nesciunt. Suscipit distinctio obcaecati veritatis modi, illum aliquam amet laudantium.</p>
+			<ul>
+				<li>List item</li>
+				<li>List item</li>
+				<li>List item</li>
+			</ul>
+			<ol>
+				<li>List item</li>
+				<li>List item</li>
+				<li>List item</li>
+			</ol>
+		</div>
+		<footer id="footer">
+			//= templates/footer
+		</footer>
+		<script>var vars = {page: 'home_page'};</script>
+		//= templates/scripts
+	</body>
 </html>
