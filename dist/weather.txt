@@ -1,0 +1,14 @@
+astronomy
+    sunrise:"6:19 am"
+    sunset:"8:35 pm"
+
+atmosphere
+    humidity:"34"
+    pressure:"984.0"
+    rising:"0"
+    visibility:"16.1"
+
+wind
+    chill:"86"
+    direction:"225"
+    speed:"4"

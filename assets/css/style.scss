@@ -1,5 +1,5 @@
-//@import "foundation/settings/settings";
-//@import "foundation/foundation";
+@import "foundation/settings/settings";
+@import "foundation/foundation";
 
 @import "libs/variables";
 @import "libs/mixins";
@@ -7,7 +7,12 @@
 
 @import "components/header";
 @import "components/footer";
+@import "components/popup";
+@import "components/main";
 
 @import "pages/global";
 @import "pages/home";
 
+body{
+  overflow: hidden;
+}

@@ -1,0 +1,129 @@
+@keyframes blades-rotate{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.react-app{
+
+}
+
+.cities{
+  padding-top: 50px;
+
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  li{
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    list-style-type: none;
+    height: 300px;
+    min-width: 200px;
+    margin: 10px 50px 50px 10px;
+    padding: 0;
+    overflow: hidden;
+    background: #f7f7f4;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.54);
+    transition: 0.5s;
+
+    background-image: url(../images/weather/lighter.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    &:hover{
+      top: -5px;
+      left: -5px;
+      box-shadow: 10px 10px 10px rgba(0,0,0,.54);
+    }
+
+    &.Partly-Cloudy{
+      background-image: url(../images/condition/Partly-Cloudy.jpg);
+    }
+
+    a{
+      display: inline-block;
+      padding: 10px;
+      width: 100%;
+      height: 100%;
+
+      background: rgba(255, 255, 255, .3);
+    }
+
+    .cityName{
+      display: block;
+      color: white;
+      text-align: center;
+      font-size: 2em;
+      line-height: 1em;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, .54);
+    }
+
+    .countryName{
+      display: inline-block;
+      width: 100%;
+      color: white;
+      text-align: center;
+      font-size: 1em;
+      text-shadow: 1px 1px 1px rgba(0,0,0,.54);
+    }
+
+    .temperatures{
+      text-align: center;
+    }
+
+    .tempHigh,
+    .tempLow{
+      color: white;
+      font-size: 3em;
+      text-shadow: 1px 1px 1px rgba(0,0,0,.54);
+
+      svg path{
+        fill: rgb(255, 255, 255);
+        stroke: rgba(0, 0, 0, .2);
+        stroke-width: 1;
+        vertical-align: bottom;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.54);
+      }
+
+    }
+
+    .wind{
+      position: relative;
+      width: 100px;
+      height: 100px;
+
+      .blades{
+        position: absolute;
+        top: 5px;
+        left: -3px;
+        display: block;
+        margin: 0 auto;
+        animation: blades-rotate 2s infinite linear;
+      }
+
+
+      svg{
+        width: 100px;
+        height: 100px;
+        fill: white;
+
+        .blades{
+
+          animation-name: blades-rotate;
+        }
+
+      }
+    }
+  }
+
+}

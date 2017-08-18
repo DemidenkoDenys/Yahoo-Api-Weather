@@ -1,6 +1,8 @@
 import GENERAL from "./pages/general";
 import HOME from "./pages/home";
 
+import './index.js';
+
 let init = null;
 
 switch (global.vars.page) {

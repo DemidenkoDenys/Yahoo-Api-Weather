@@ -5,7 +5,18 @@
   "author": "Bigdrop <bigdrop@bigdropinc.com>",
   "private": true,
   "dependencies": {
-    "jquery": "latest"
+    "file-loader": "^0.11.2",
+    "foundation-sites": "^6.4.2",
+    "history": "^4.6.3",
+    "jquery": "latest",
+    "jquery-popup-overlay": "^1.7.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.1.2",
+    "react-router-dom": "^4.1.2",
+    "redux": "^3.7.2",
+    "url-loader": "^0.5.9"
   },
   "devDependencies": {
     "babel-plugin-transform-inline-environment-variables": "latest",

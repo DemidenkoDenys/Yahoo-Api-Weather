@@ -1,0 +1,30 @@
+#popup-nocity,
+#popup-exist{
+  display: none;
+  position: relative;
+  transform: scale(0.8);
+}
+.popup_visible #popup-nocity,
+.popup_visible #popup-exist{
+  transform: scale(1);
+}
+
+.popup-wrapper{
+  width: 500px;
+  height: auto;
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+
+  -webkit-box-shadow: 6px 7px 45px -13px rgba(0,0,0,1);
+  -moz-box-shadow: 6px 7px 45px -13px rgba(0,0,0,1);
+  box-shadow: 6px 7px 45px -13px rgba(0,0,0,1);
+
+  p{
+    text-align: center;
+  }
+}
+
+.popup_background{
+
+}
