@@ -35,12 +35,13 @@ class Filter extends React.Component {
                     this.props.showAllCities();
                 }
                 else{
-                    this.weather = data.query.results.channel;
+                    // this.weather = data.query.results.channel;
+                    console.log(data);
 
                     if(data.query.count > 1){
                         for(let i = 0; i < data.query.count; i++){
-                            if(!this.checkExistCity(this.weather[i].location.city))
-                                this.props.addCity({ type: 'add_city', city: this.weather[i] });
+                            if(!this.checkExistCity(data.query.results.channel[i].location.city))
+                                this.props.addCity({ type: 'add_city', city: data.query.results.channel[i] });
                             else{
                                 this.props.showAllCities();
                                 $('#popup-exist').popup('show');
@@ -49,8 +50,8 @@ class Filter extends React.Component {
                         }
                     }
                     if(data.query.count === 1){
-                        if(!this.checkExistCity(this.weather.location.city))
-                            this.props.addCity({ type: 'add_city', city: this.weather });
+                        if(!this.checkExistCity(data.query.results.channel.location.city))
+                            this.props.addCity({ type: 'add_city', city: data.query.results.channel });
                         else{
                             this.props.showAllCities();
                             $('#popup-exist').popup('show');
