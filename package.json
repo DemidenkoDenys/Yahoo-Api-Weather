@@ -7,6 +7,8 @@
   "dependencies": {
     "file-loader": "^0.11.2",
     "foundation-sites": "^6.4.2",
+    "google-map-react": "^0.24.0",
+    "google-maps-react": "^1.1.0",
     "history": "^4.6.3",
     "jquery": "latest",
     "jquery-popup-overlay": "^1.7.4",

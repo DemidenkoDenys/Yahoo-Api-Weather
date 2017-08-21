@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ResponsiveContainer, LineChart, Line, data, XAxis, YAxis, CartesianGrid, Tooltip, text, label } from 'recharts';
-
+import {GoogleApiWrapper} from 'google-maps-react';
+import MapContainer from './mapWrapper';
 
 const CustomLabel = ({x, y, stroke, value}) => {
     return <text x={x} y={y} dy={-10} fill={stroke} fontSize={14} textAnchor="middle">{value} C&deg;</text>
@@ -26,6 +27,10 @@ const CustomYAxisTick = ({x, y, payload}) => {
 class City extends React.Component {
 
     data = [];
+    mapProps = {
+        center: {lat: 59.95, lng: 30.33},
+        zoom: 11
+    };
 
     toCelsius(temperature){
         return Math.round((temperature - 32) / 1.8);
@@ -34,7 +39,9 @@ class City extends React.Component {
     setCityForecast(){
         this.data = [];
         this.props.store.cities.map((item) => {
-            if(item.city.location.city === this.props.match.params.city) {
+            if(item.city.location.city === this.props.match.params.city){
+                this.mapProps.center.lat = item.city.item.lat;
+                this.mapProps.center.lng = item.city.item.long;
                 item.city.item.forecast.map((item) => {
                     this.data.push({ name: item.day,
                                      min: this.toCelsius(item.low),
@@ -48,36 +55,44 @@ class City extends React.Component {
     render(){
         this.setCityForecast();
 
+
+
         return (
-            <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={ this.data }
-                           margin={{ top: 100, right: 100, left: 50, bottom: 0 }}>
+        <div>
+                <ResponsiveContainer width="100%" height={400}>
+                    <LineChart data={ this.data }
+                               margin={{ top: 100, right: 100, left: 50, bottom: 0 }}>
 
-                    <XAxis dataKey="name"
-                           height={60}
-                           padding={{left: 50, right: 50}}
-                           tick={<CustomXAxisTick/>} />
+                        <XAxis dataKey="name"
+                               height={60}
+                               padding={{left: 50, right: 50}}
+                               tick={<CustomXAxisTick/>} />
 
-                    <YAxis tick={<CustomYAxisTick/>} />
+                        <YAxis tick={<CustomYAxisTick/>} />
 
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
 
-                    <Tooltip />
+                        <Tooltip />
 
-                    <Line type="monotone"
-                          dataKey="min"
-                          stroke="#00a0da"
-                          activeDot={{r: 5, strokeWidth: 2, stroke: '#00a0da', fill: 'white'}}
-                          label={<CustomLabel stroke="#00a0da"/>} />
+                        <Line type="monotone"
+                              dataKey="min"
+                              stroke="#00a0da"
+                              activeDot={{r: 5, strokeWidth: 2, stroke: '#00a0da', fill: 'white'}}
+                              label={<CustomLabel stroke="#00a0da"/>} />
 
-                    <Line type="monotone"
-                          dataKey="max"
-                          stroke="#f78b1e"
-                          activeDot={{r: 5, strokeWidth: 2, stroke: '#f78b1e', fill: 'white'}}
-                          label={<CustomLabel stroke="#f78b1e"/>} />
+                        <Line type="monotone"
+                              dataKey="max"
+                              stroke="#f78b1e"
+                              activeDot={{r: 5, strokeWidth: 2, stroke: '#f78b1e', fill: 'white'}}
+                              label={<CustomLabel stroke="#f78b1e"/>} />
 
-                </LineChart>
-            </ResponsiveContainer>
+                    </LineChart>
+
+                </ResponsiveContainer>
+
+                <MapContainer coords={this.mapProps.center}/>
+
+            </div>
         );
     }
 }
