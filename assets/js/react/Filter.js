@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 class Filter extends React.Component {
 
-    weather = null;
-
     constructor() {
         super();
         this.state = { value: '' };
@@ -17,12 +15,6 @@ class Filter extends React.Component {
         this.setState({ value: e.target.value });
     }
     
-    checkExistCity(cityName){
-        return this.props.store.cities.some(item =>
-            cityName === item.city.location.city
-        );
-    }
-
     handleSubmit(e){
         e.preventDefault();
         this.props.startLoading();
@@ -35,33 +27,32 @@ class Filter extends React.Component {
                     this.props.showAllCities();
                 }
                 else{
-                    // this.weather = data.query.results.channel;
-                    console.log(data);
-
                     if(data.query.count > 1){
                         for(let i = 0; i < data.query.count; i++){
-                            if(!this.checkExistCity(data.query.results.channel[i].location.city))
-                                this.props.addCity({ type: 'add_city', city: data.query.results.channel[i] });
-                            else{
-                                this.props.showAllCities();
-                                $('#popup-exist').popup('show');
-                                setTimeout(() => { $('#popup-exist').popup('hide'); }, 1000);
-                            }
+                            this.addCityToStore(data.query.results.channel[i]);
                         }
                     }
-                    if(data.query.count === 1){
-                        if(!this.checkExistCity(data.query.results.channel.location.city))
-                            this.props.addCity({ type: 'add_city', city: data.query.results.channel });
-                        else{
-                            this.props.showAllCities();
-                            $('#popup-exist').popup('show');
-                            setTimeout(() => { $('#popup-exist').popup('hide'); }, 1000);
-                        }
-                    }
+                    if(data.query.count === 1)
+                        this.addCityToStore(data.query.results.channel);
                 }
-
                 this.setState({ value: '' });
             });
+    }
+
+    addCityToStore(city){
+        if(!this.checkExistCity(city.location.city))
+            this.props.addCity({ type: 'add_city', city: city });
+        else{
+            this.props.showAllCities();
+            $('#popup-exist').popup('show');
+            setTimeout(() => { $('#popup-exist').popup('hide'); }, 1000);
+        }
+    }
+
+    checkExistCity(cityName){
+        return this.props.store.cities.some(item =>
+            cityName === item.city.location.city
+        );
     }
 
     render(){

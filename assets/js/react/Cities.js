@@ -2,14 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-// import windmill from "";
-
 class City extends React.Component {
 
-    componentDidUpdate(){
-        console.log(this.props);
-    }
-    
     toCelsius(temperature){
         return Math.round((temperature - 32) / 1.8);
     }
@@ -17,14 +11,28 @@ class City extends React.Component {
     getCities(){
         return this.props.store.cities.map((item, index) => {
 
-            const bladesStyle = {
-                animationDuration: `${ 1 / item.city.wind.speed * 30 }s`
-            };
+            let exp;
+            let condition = item.city.item.condition.text.toLowerCase().replace(' ', '-');
+            let bladesStyle = { animationDuration: `${ 1 / item.city.wind.speed * 30 }s` };
+
+            switch(condition){
+                case 'fair-(night)':
+                    exp =  '.png'
+                    break;
+                case 'hail':
+                case 'snow':
+                    exp =  '.webp'
+                    break;
+                default:
+                    exp =  '.jpg'
+            }
+
+            let cityBgStyle = { backgroundImage: 'url("../dist/images/conditions/' + condition + exp + '")' };
 
             // if(item.location.city.toLowerCase().includes(this.props.text.toLowerCase())) //filtration
 
             return(
-                <li key={ index } className={item.city.item.condition.text.replace(' ', '-')}>
+                <li key={ index } style={cityBgStyle}>
                     <NavLink to={'/'+item.city.location.city}>
 
                         <div className="title">
@@ -71,7 +79,9 @@ class City extends React.Component {
 
         if(this.props.store.cityListState === 'loading'){
             component = (
-                <h1>Loading</h1>
+                <div className="loading">
+                    <img src="../dist/images/loading.gif" alt=""/>
+                </div>
             )
         }
 
@@ -87,3 +97,4 @@ export default connect(
 // {/*<div className="loading">*/}
 // {/*<img src="../images/loading.gif" alt="loading"/>*/}
 // {/*</div>*/}
+//{/*<li key={ index } className={item.city.item.condition.text.replace(' ', '-')}>*/}

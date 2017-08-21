@@ -6,30 +6,21 @@ import Filter from './Filter';
 
 class Navigation extends React.Component {
 
-    componentDidUpdate(){
-        // console.log();
-    }
-    
     render(){
+        let showAllMenu = ( this.props.store.cities.length > 0 )
+          ? <li key='0'><NavLink to='/' isActive={ () => { return (this.props.location.pathname === '/') } }>Show all cities</NavLink></li>
+          : null;
 
-        let showAllItem = ( this.props.store.cities.length > 0 )
-          ? <li key='0'>
-                <NavLink to='/' isActive={ () => { return (this.props.location.pathname === '/') } }>
-                    Show all cities
-                </NavLink>
-            </li> : null;
-
-        let cities = this.props.store.cities.map((item, index) => {
-            return <li key={index + 1}><NavLink to={'/'+item.city.location.city}>{ item.city.location.city }</NavLink></li>
+        let citiesMenu = this.props.store.cities.map((item) => {
+            return <li key={+item.city.item.lat + +item.city.item.long}><NavLink to={'/'+item.city.location.city}>{ item.city.location.city }</NavLink></li>
         });
-
 
         return (
             <header className="header top-bar">
                 <nav className="top-bar-left">
                     <ul className="menu">
-                        { showAllItem }
-                        { cities }
+                        { showAllMenu }
+                        { citiesMenu }
                     </ul>
                 </nav>
                 <div className="top-bar-right">
