@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Flag from 'react-world-flags'
 
 class City extends React.Component {
 
@@ -10,8 +11,9 @@ class City extends React.Component {
 
     getCities(){
         return this.props.store.cities.map((item, index) => {
-
+            
             let exp;
+            let countryCode = item.city.description.substr(item.city.description.length - 2, item.city.description.length).toLowerCase();
             let condition = item.city.item.condition.text.toLowerCase().replace(' ', '-');
             let bladesStyle = { animationDuration: `${ 1 / item.city.wind.speed * 30 }s` };
 
@@ -37,7 +39,7 @@ class City extends React.Component {
 
                         <div className="title">
                             <strong className="cityName">{ item.city.location.city }</strong>
-                            <span className="countryName">({ item.city.location.country })</span>
+                            <span className="countryName">({ item.city.location.country } <Flag code={countryCode} height="14" width="18"/>)</span>
                         </div>
 
                         <div className="temperatures">
