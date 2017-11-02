@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ResponsiveContainer, LineChart, Line, data, XAxis, YAxis, CartesianGrid, Tooltip, text, label } from 'recharts';
-import {GoogleApiWrapper} from 'google-maps-react';
 import MapContainer from './mapWrapper';
 
 const CustomLabel = ({x, y, stroke, value}) => {

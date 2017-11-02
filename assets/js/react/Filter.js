@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import AgAutocomplete from 'react-algoliasearch';
 
 class Filter extends React.Component {
 
@@ -9,6 +10,19 @@ class Filter extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        // var client = algoliasearch('YourApplicationID', 'YourPublicAPIKey');
+
+        // var index = client.initIndex('indexName');
+
+        // index.search('something', function(err, content) {
+        //     if (err) {
+        //         console.error(err);
+        //         return;
+        //     }
+        //
+        //     console.log(content);
+        // });
     }
 
     handleChange(e){
@@ -21,6 +35,7 @@ class Filter extends React.Component {
 
         $.getJSON(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places%20where%20text%20IN%20(%22${this.state.value}%22)%20and%20placeTypeName.content%3D'Town')&format=json&callback=?`)
             .done((data) => {
+                console.log(data);
                 if(data.query.count === 0) {
                     $('#popup-nocity').popup('show');
                     setTimeout(() => { $('#popup-nocity').popup('hide'); }, 1000);
@@ -61,7 +76,6 @@ class Filter extends React.Component {
                 <div className="menu">
                     <li>
                         <input type="search" placeholder="Enter city..." id="filter-text" value={ this.state.value } onChange={ this.handleChange } required/>
-
                     </li>
                     <li>
                         <input className="button" type="submit" value="Submit" />
@@ -83,3 +97,16 @@ export default connect(
     })
 )(Filter);
 
+
+
+    /*
+    * <AgAutocomplete
+     apiKey={"6be0576ff61c053d5f9a3225e2a90f76"}
+     appId={"latency"}
+     displayKey="name"
+     indices={[{index: 'contacts'}]}
+     inputId="filter-text"
+     placeholder="Search..."
+     />
+    *
+    * */
